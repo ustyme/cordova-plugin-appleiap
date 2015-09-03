@@ -39,6 +39,12 @@
 	}
     
     NSSet * productIdentifiers = [arguments objectAtIndex:0];
+
+    // If this is a single string, package it in an NSSet
+    if ([productIdentifiers isKindOfClass:[NSString class]]) {
+        productIdentifiers = [[NSSet alloc] initWithObjects:productIdentifiers, nil];
+    }
+
 	NSLog(@"requestProductData: %@", productIdentifiers);
      
     SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
